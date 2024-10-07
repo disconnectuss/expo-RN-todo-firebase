@@ -23,7 +23,7 @@ const HomePage: React.FC = () => {
         This is Home Page
       </Text>
       <Link href="/register" asChild >
-      <Button title="Open register page"/>
+      <Button title="Open register"/>
       </Link>
     </View>
   );
