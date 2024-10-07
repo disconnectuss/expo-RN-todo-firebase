@@ -1,37 +1,35 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
-import * as SplashScreen from 'expo-splash-screen';
-import { useEffect } from 'react';
-import 'react-native-reanimated';
+import { Button, StyleSheet, Text, View } from "react-native";
+import React from "react";
+import { Stack, Tabs, useRouter } from "expo-router";
+import { useRoute } from "@react-navigation/native";
 
-import { useColorScheme } from '@/hooks/useColorScheme';
-
-// Prevent the splash screen from auto-hiding before asset loading is complete.
-SplashScreen.preventAutoHideAsync();
-
-export default function RootLayout() {
-  const colorScheme = useColorScheme();
-  const [loaded] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
-  });
-
-  useEffect(() => {
-    if (loaded) {
-      SplashScreen.hideAsync();
-    }
-  }, [loaded]);
-
-  if (!loaded) {
-    return null;
-  }
-
+const _layout: React.FC = () => {
+  const router = useRouter();
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
-      </Stack>
-    </ThemeProvider>
+    <Stack>
+      <Stack.Screen name="index" options={{ title: "Home" }} />
+      <Stack.Screen
+        name="register/index"
+        options={{
+          title: "Register",
+          headerRight: () => (
+            <Button title="Login" onPress={() => router.push("/login")} />
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="login"
+        options={{ title: "Login modal ", presentation: "modal" }}
+      />
+        <Stack.Screen name="(tabs)" options={{
+            headerShown: false
+        }} />
+        <Stack.Screen name="[missing]" options={{
+            title: '404'
+        }} />
+    </Stack>
+    
   );
-}
+};
+
+export default _layout;
