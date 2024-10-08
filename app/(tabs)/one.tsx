@@ -1,12 +1,15 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { Button, StyleSheet, Text, View } from "react-native";
+import React from "react";
+import { useRouter } from "expo-router";
 
-const one = () => {
+const one: React.FC = () => {
+  const router = useRouter();
   return (
     <View>
-      <Text>one</Text>
+      <Text style={{ fontSize: 20 }}>This is tab one</Text>
+      <Button title="Go back" onPress={() => router.back()} />
     </View>
-  )
-}
+  );
+};
 
-export default one
+export default one;

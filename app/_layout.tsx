@@ -1,7 +1,6 @@
-import { Button, StyleSheet, Text, View } from "react-native";
+import { Button } from "react-native";
 import React from "react";
-import { Stack, Tabs, useRouter } from "expo-router";
-import { useRoute } from "@react-navigation/native";
+import { Stack, useRouter } from "expo-router";
 
 const _layout: React.FC = () => {
   const router = useRouter();
@@ -11,7 +10,7 @@ const _layout: React.FC = () => {
       <Stack.Screen
         name="register/index"
         options={{
-          title: "Registebvcr",
+          title: "Register",
           headerRight: () => (
             <Button title="Login" onPress={() => router.push("/login")} />
           ),
@@ -21,9 +20,9 @@ const _layout: React.FC = () => {
         name="login"
         options={{ title: "Login modal ", presentation: "modal" }}
       />
-      
+      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+      <Stack.Screen name="[missing]" options={{ title: "404" }} />
     </Stack>
-    
   );
 };
 

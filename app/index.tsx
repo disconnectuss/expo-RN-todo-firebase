@@ -22,8 +22,14 @@ const HomePage: React.FC = () => {
       >
         This is Home Page
       </Text>
-      <Link href="/register" asChild >
-      <Button title="Open register"/>
+      <Link href="/register" asChild>
+        <Button title="Open register" />
+      </Link>
+      <Link href="/one" asChild>
+        <Button title="Go to tab 1" />
+      </Link>
+      <Link href="/two" asChild>
+        <Button title="Go to tab 2" />
       </Link>
     </View>
   );
